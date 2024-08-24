@@ -18,18 +18,25 @@ a {
     margin-left: 76px;
 }
 .backimage {
-    background-image: url('./Assets/Images/art-3561710_640.jpg');
+    background-image: url('./Assets/Blog-Cover.gif');
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
-    height: 90.3vh;
+    height: 88.4vh;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.backimage h1 {
-    font-family: "Matemasie", sans-serif;
+.backimage h1,.navbar-brand {
+    font-family: "New Amsterdam", sans-serif;
     font-weight: 400;
     font-style: normal;
 }
+.resize {
+    resize: none;
+}
+/* .form {
+    height: 0;
+    overflow: hidden;
+} */

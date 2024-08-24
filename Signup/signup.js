@@ -29,6 +29,18 @@ const signup = () => {
   });
 }
 
+userEmail.addEventListener("keyup", (e) => {
+  if (e.key === "Enter") {
+    signup();
+  }
+});
+
+userPassword.addEventListener("keyup", (e) => {
+  if (e.key === "Enter") {
+    signup();
+  }
+});
+
 signUpBtn.addEventListener('click',signup);
 
 onAuthStateChanged(auth, (user) => {

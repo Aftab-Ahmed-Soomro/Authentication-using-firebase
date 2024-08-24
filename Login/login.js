@@ -30,6 +30,19 @@ const login = () => {
   });
 }
 
+email.addEventListener("keyup", (e) => {
+  if (e.key === "Enter") {
+    login();
+  }
+});
+
+password.addEventListener("keyup", (e) => {
+  if (e.key === "Enter") {
+    login();
+  }
+});
+
+
 loginBtn.addEventListener('click',login);
 
 const forgotPassword = () => {
