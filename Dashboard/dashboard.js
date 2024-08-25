@@ -2,10 +2,6 @@ import {getDownloadURL, uploadBytesResumable, uploadBytes, ref,storage, addDoc, 
 
 let logOutBtn = document.getElementById('logOutBtn');
 let data = document.querySelector('.data');
-// let updatedName = document.getElementById('stdName');
-// let updatedLink = document.getElementById('assignmentLink');
-// let updateAssignmentBtn = document.getElementById('updateAssignment');
-// let isEdit = null;
 let form = document.querySelector('.form')
 form.style.height = '0px';
 form.style.overflow = 'hidden';
@@ -161,61 +157,6 @@ const getAssignments = async () => {
         console.log(error);
     }
 }
-
-// window.editData = async (id, loader) => {
-//     loader.innerText = 'Editing...';
-//     try {
-//         let currentData = await getDoc(doc(db, "assignments", id));
-//         const {StudentName,AssignmentLink} = currentData.data();
-//         updatedName.value = StudentName;
-//         updatedLink.value = AssignmentLink;
-//         isEdit = id;
-//         form.style.height = 'auto';
-//         form.style.overflow = 'visible';
-//         // console.log(StudentName,AssignmentLink);
-//     }
-//     catch (error){
-//         console.log(error);
-//     }
-//     finally {
-//         loader.innerText = 'Edit';
-//     }
-// }
-
-// const updateData = async () => {
-//     // console.log('updated');
-//     updateAssignmentBtn.innerText = 'Updating...'
-//     try {
-//         await updateDoc(doc(db, "assignments", isEdit),{
-//              StudentName : updatedName.value,
-//              AssignmentLink : updatedLink.value
-//         });
-//         getAssignments();
-//     }
-//     catch (error){
-//         loader.innerText = 'Delete';
-//         console.log(error);
-//     }
-//     finally {
-//         updateAssignmentBtn.innerText = 'Update'
-//         form.style.height = '0px';
-//         form.style.overflow = 'hidden';
-//     }
-// }
-
-// updateAssignmentBtn.addEventListener('click',updateData);
-
-// window.deleteData = async (id,loader) => {
-//     loader.innerText = 'Deleting...';
-//     try {
-//         await deleteDoc(doc(db, "assignments", id));
-//         getAssignments();
-//     }
-//     catch (error){
-//         loader.innerText = 'Delete';
-//         console.log(error);
-//     }
-// }
 
 getAssignments();
 
