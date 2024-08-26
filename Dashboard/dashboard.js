@@ -2,6 +2,10 @@ import {getDownloadURL, uploadBytesResumable, uploadBytes, ref,storage, addDoc, 
 
 let logOutBtn = document.getElementById('logOutBtn');
 let data = document.querySelector('.data');
+let updatedName = document.getElementById('updatedName');
+let updatedLink = document.getElementById('updatedLink');
+let updateAssignmentBtn = document.getElementById('updateAssignmentBtn');
+let isEdit = null;
 let form = document.querySelector('.form')
 form.style.height = '0px';
 form.style.overflow = 'hidden';
@@ -144,16 +148,71 @@ const getAssignments = async () => {
         <p class="card-text text-center">${AssignmentLink}</p>
     </div>
     </div>
-    <!-- <div class='d-flex m-auto mt-3'>
+    <div class='d-flex m-auto mt-3'>
         <button onclick = "editData('${doc.id}',this)" type="button" class="btn btn-secondary me-2">Edit</button>
         <button onclick = "deleteData('${doc.id}',this)" type="button" class="btn btn-danger">Delete</button>   
-    </div> -->
+    </div>
     <hr>
     `
     // console.log(`${doc.id} => ${doc.data()}`);
     });
     }
     catch (error) {
+        console.log(error);
+    }
+}
+
+window.editData = async (id, loader) => {
+    loader.innerText = 'Editing...';
+    try {
+        let currentData = await getDoc(doc(db, "assignments", id));
+        const {StudentName,AssignmentLink} = currentData.data();
+        updatedName.value = StudentName;
+        updatedLink.value = AssignmentLink;
+        isEdit = id;
+        form.style.height = 'auto';
+        form.style.overflow = 'visible';
+        console.log(StudentName,AssignmentLink);
+    }
+    catch (error){
+        console.log(error);
+    }
+    finally {
+        loader.innerText = 'Edit';
+    }
+}
+
+const updateData = async () => {
+    console.log('updated');
+    updateAssignmentBtn.innerText = 'Updating...'
+    try {
+        await updateDoc(doc(db, "assignments", isEdit),{
+             StudentName : updatedName.value,
+             AssignmentLink : updatedLink.value
+        });
+        getAssignments();
+    }
+    catch (error){
+        loader.innerText = 'Delete';
+        console.log(error);
+    }
+    finally {
+        updateAssignmentBtn.innerText = 'Update'
+        form.style.height = '0px';
+        form.style.overflow = 'hidden';
+    }
+}
+
+updateAssignmentBtn.addEventListener('click',updateData);
+
+window.deleteData = async (id,loader) => {
+    loader.innerText = 'Deleting...';
+    try {
+        await deleteDoc(doc(db, "assignments", id));
+        getAssignments();
+    }
+    catch (error){
+        loader.innerText = 'Delete';
         console.log(error);
     }
 }
